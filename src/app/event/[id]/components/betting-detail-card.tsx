@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import { X, Share2 } from 'lucide-react';
 import { BettingList, BettingOption } from '@/types';
 import { useRouter } from 'next/navigation';
 import { calculateOdds } from '@/lib/betting-data';
@@ -25,10 +25,42 @@ export default function BettingDetailCard({
     router.push('/');
   };
 
+  const shareEvent = async () => {
+    const shareData = {
+      title: `VIP PolyB ${title}`,
+      text: `Betting NOW!`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        // 공유 API를 지원하지 않는 경우 클립보드에 복사
+        await navigator.clipboard.writeText(window.location.href);
+        alert('링크가 클립보드에 복사되었습니다!');
+      }
+    } catch (error) {
+      console.error('공유 실패:', error);
+    }
+  };
+
   return (
     <Card className="bg-gray-800/80 border-gray-700 backdrop-blur-sm">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-white text-lg md:text-xl">{title}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-white text-lg md:text-xl">
+            {title}
+          </CardTitle>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={shareEvent}
+            className="text-gray-400 hover:text-white hover:bg-gray-700 cursor-pointer"
+          >
+            <Share2 className="w-4 h-4" />
+          </Button>
+        </div>
         <Button
           variant="ghost"
           size="icon"
