@@ -54,36 +54,46 @@ export function MobileSidebar() {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="w-64 bg-gray-800 border-gray-700 p-0"
+        className="w-64 bg-gray-800 border-gray-700 p-0 flex flex-col h-full"
       >
         {/* 스크린리더 접근성을 위한 제목 숨김 */}
         <VisuallyHidden>
           <SheetTitle>모바일 네비게이션 메뉴</SheetTitle>
         </VisuallyHidden>
 
-        <Logo />
-        <MainNav
-          isActiveRoute={isActiveRoute}
-          handleOpenChange={handleOpenChange}
-        />
-
-        <div className="p-4 border-t border-gray-700 space-y-3">
-          <NavigationItem
-            href="https://vipgame.2tm.fun/"
-            icon={Play}
-            label="Play VIP"
-            isActive={false}
-            isExternal={true}
+        {/* 상단 고정 영역 */}
+        <div className="flex-shrink-0">
+          <Logo />
+          <MainNav
+            isActiveRoute={isActiveRoute}
+            handleOpenChange={handleOpenChange}
           />
-
-          {!isWalletConnected ? (
-            <WalletConnect handleWalletConnect={handleWalletConnect} />
-          ) : (
-            <WalletInfomation handleWalletDisconnect={handleWalletDisconnect} />
-          )}
         </div>
-        <SocialLinks />
-        <Footer />
+
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4 border-t border-gray-700 space-y-3">
+            <NavigationItem
+              href="https://vipgame.2tm.fun/"
+              icon={Play}
+              label="Play VIP"
+              isActive={false}
+              isExternal={true}
+            />
+
+            {!isWalletConnected ? (
+              <WalletConnect handleWalletConnect={handleWalletConnect} />
+            ) : (
+              <WalletInfomation
+                handleWalletDisconnect={handleWalletDisconnect}
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="flex-shrink-0 mt-auto">
+          <SocialLinks />
+          <Footer />
+        </div>
       </SheetContent>
     </Sheet>
   );
