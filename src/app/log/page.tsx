@@ -117,7 +117,7 @@ export default function LogPage() {
         <HeaderCard title="Log" />
         {!walletState.isConnected ? (
           <WalletConnect
-            title="to check your betting history"
+            title="To check your betting history"
             handleConnect={handleConnect}
           />
         ) : (
