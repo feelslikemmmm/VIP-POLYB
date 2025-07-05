@@ -39,7 +39,7 @@ export function TradeModal({
     setWalletState({
       ...walletState,
       isConnected: true,
-      vipBalance: 300, // 연결 후 VIP 잔액 설정
+      vipBalance: 3000000, // 연결 후 VIP 잔액 설정
     });
   };
 
