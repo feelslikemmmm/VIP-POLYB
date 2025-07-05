@@ -83,11 +83,32 @@ export default function RewardPage() {
     );
   };
 
-  const shareEvent = async (betTitle: string) => {
+  const shareEvent = async (bet: {
+    title: string;
+    selectedOption: string;
+    toWin: number;
+    amount: number;
+    status: string;
+  }) => {
+    let shareText = '';
+
+    if (bet.status === 'WIN') {
+      shareText = `VIP PolyB
+I bet on "${bet.title} — ${bet.selectedOption}"
+and won!
+Earned ${bet.toWin.toLocaleString()} VIP!
+Try betting on other issues now`;
+    } else if (bet.status === 'LOSE') {
+      shareText = `VIP PolyB
+I bet on "${bet.title} — ${bet.selectedOption}"
+and took a LOSS, losing ${bet.amount.toLocaleString()} VIP.
+Try betting on other issues now`;
+    }
+
     const shareData = {
-      title: `VIP PolyB ${betTitle} Betting NOW!`,
-      text: `Betting NOW!`,
-      url: window.location.href,
+      title: 'VIP PolyB',
+      text: shareText,
+      url: 'https://vipgame.2tm.fun/',
     };
 
     try {
@@ -95,8 +116,9 @@ export default function RewardPage() {
         await navigator.share(shareData);
       } else {
         // 공유 API를 지원하지 않는 경우 클립보드에 복사
-        await navigator.clipboard.writeText(window.location.href);
-        alert('링크가 클립보드에 복사되었습니다!');
+        const fullShareText = `${shareText}\nhttps://vipgame.2tm.fun/`;
+        await navigator.clipboard.writeText(fullShareText);
+        alert('공유 내용이 클립보드에 복사되었습니다!');
       }
     } catch (error) {
       console.error('공유 실패:', error);
@@ -109,7 +131,7 @@ export default function RewardPage() {
         <HeaderCard title="Reward" />
         {!walletState.isConnected ? (
           <WalletConnect
-            title=" To check your rewards"
+            title="To check your rewards"
             handleConnect={handleConnect}
           />
         ) : (

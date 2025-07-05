@@ -15,7 +15,13 @@ interface HistoryCardProps {
     status: string;
     claimed: boolean;
   };
-  shareEvent: (betTitle: string) => void;
+  shareEvent: (bet: {
+    title: string;
+    selectedOption: string;
+    toWin: number;
+    amount: number;
+    status: string;
+  }) => void;
   handleClaim: (id: number) => void;
 }
 
@@ -44,7 +50,15 @@ export default function HistoryCard({
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => shareEvent(bet.title)}
+              onClick={() =>
+                shareEvent({
+                  title: bet.title,
+                  selectedOption: bet.selectedOption,
+                  toWin: bet.toWin,
+                  amount: bet.amount,
+                  status: bet.status,
+                })
+              }
               className="text-gray-400 hover:text-white hover:bg-gray-700 cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
