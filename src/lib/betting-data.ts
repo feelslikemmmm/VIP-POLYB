@@ -37,7 +37,7 @@ export const BETTING_LIST: BettingList[] = [
   },
   {
     id: 4,
-    title: '삼성전자 주가 12월 말 8만원 돌파',
+    title: 'SK하이닉스 주가 12월 말 15만원 돌파',
     bettingEndDate: '2024-12-31 15:30:00',
     bettingAmount: 1800000,
     totalParticipants: 22000,
@@ -48,16 +48,14 @@ export const BETTING_LIST: BettingList[] = [
   },
   {
     id: 5,
-    title: '삼성전자 주가 12월 말 8만원 돌파',
+    title: 'LG에너지솔루션 주가 12월 말 50만원 돌파',
     bettingEndDate: '2024-12-31 15:30:00',
     bettingAmount: 2200000,
     totalParticipants: 28000,
     options: [
       { id: 10, name: '돌파', amount: 2100, odds: 1.6 },
       { id: 11, name: '미달', amount: 3400, odds: 1.4 },
-      { id: 12, name: '미달', amount: 3400, odds: 1.4 },
-      { id: 13, name: '미달', amount: 3400, odds: 1.4 },
-      { id: 14, name: '미달', amount: 3400, odds: 1.4 },
+      { id: 12, name: '보류', amount: 1500, odds: 2.1 },
     ],
   },
 ];
