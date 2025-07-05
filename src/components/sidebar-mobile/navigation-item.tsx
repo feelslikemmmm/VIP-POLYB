@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
+import Image from 'next/image';
 
 interface NavigationItemProps {
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  iconUrl: string;
   label: string;
   isActive: boolean;
   isExternal?: boolean;
@@ -12,7 +13,7 @@ interface NavigationItemProps {
 
 export default function NavigationItem({
   href,
-  icon: Icon,
+  iconUrl,
   label,
   isActive,
   isExternal = false,
@@ -32,7 +33,13 @@ export default function NavigationItem({
         rel="noopener noreferrer"
         className={className}
       >
-        <Icon className="w-5 h-5" />
+        <Image
+          src={iconUrl}
+          width={20}
+          height={20}
+          className="w-5 h-5"
+          alt={label}
+        />
         <span>{label}</span>
       </a>
     );
@@ -40,7 +47,13 @@ export default function NavigationItem({
 
   return (
     <Link href={href} className={className} onClick={onClick}>
-      <Icon className="w-5 h-5" />
+      <Image
+        src={iconUrl}
+        width={20}
+        height={20}
+        className="w-5 h-5"
+        alt={label}
+      />
       <span>{label}</span>
     </Link>
   );

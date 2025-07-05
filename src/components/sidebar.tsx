@@ -2,7 +2,6 @@
 
 import type React from 'react';
 import { useState } from 'react';
-import { Play } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import SocialLinks from '@/components/social-links';
 import Logo from '@/components/sidebar/logo';
@@ -38,7 +37,7 @@ export function Sidebar() {
       <div className="p-4 border-t border-gray-700 space-y-3 flex-shrink-0">
         <NavigationItem
           href="https://vipgame.2tm.fun/"
-          icon={Play}
+          iconUrl="/sidebar_05.png"
           label="Play VIP"
           isActive={false}
           isExternal={true}

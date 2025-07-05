@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/sidebar';
 import { MobileSidebar } from '@/components/mobile-sidebar';
+import Image from 'next/image';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,10 +38,10 @@ export default function RootLayout({
             <div className="flex items-center justify-between">
               <MobileSidebar />
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
-                  <span className="text-xs font-bold text-gray-900">V</span>
+                <div className="w-6 h-6  rounded-full flex items-center justify-center">
+                  <Image src="/logo.png" alt="logo" width={24} height={24} />
                 </div>
-                <span className="text-lg font-bold text-white">VIP POLYB</span>
+                <span className="text-lg font-bold text-white">VIP PolyB</span>
               </div>
             </div>
           </div>

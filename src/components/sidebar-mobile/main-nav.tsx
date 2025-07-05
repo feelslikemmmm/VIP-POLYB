@@ -1,6 +1,5 @@
 import React from 'react';
 import NavigationItem from '@/components/sidebar-mobile/navigation-item';
-import { DollarSign, FileText, Gift, Trophy } from 'lucide-react';
 
 interface MainNavProps {
   isActiveRoute: (route: string) => boolean;
@@ -16,28 +15,28 @@ export default function MainNav({
       <div className="space-y-2">
         <NavigationItem
           href="/"
-          icon={Trophy}
+          iconUrl="/sidebar_01.png"
           label="Poly Betting"
           isActive={isActiveRoute('/')}
           onClick={handleOpenChange}
         />
         <NavigationItem
           href="/log"
-          icon={FileText}
+          iconUrl="/sidebar_02.png"
           label="Log"
           isActive={isActiveRoute('/log')}
           onClick={handleOpenChange}
         />
         <NavigationItem
           href="/reward"
-          icon={Gift}
+          iconUrl="/sidebar_03.png"
           label="Reward"
           isActive={isActiveRoute('/reward')}
           onClick={handleOpenChange}
         />
         <NavigationItem
           href="/get-vip"
-          icon={DollarSign}
+          iconUrl="/sidebar_04.png"
           label="Get $VIP"
           isActive={isActiveRoute('/get-vip')}
           onClick={handleOpenChange}

@@ -11,7 +11,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { VisuallyHidden } from '@/components/ui/dialog';
-import { Menu, Play } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/sidebar-mobile/logo';
 import MainNav from '@/components/sidebar-mobile/main-nav';
@@ -74,7 +74,7 @@ export function MobileSidebar() {
           <div className="p-4 border-t border-gray-700 space-y-3">
             <NavigationItem
               href="https://vipgame.2tm.fun/"
-              icon={Play}
+              iconUrl="/sidebar_05.png"
               label="Play VIP"
               isActive={false}
               isExternal={true}
