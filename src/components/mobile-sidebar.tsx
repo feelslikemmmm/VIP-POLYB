@@ -47,7 +47,7 @@ export function MobileSidebar() {
         <nav className="flex-1 p-4">
           <div className="space-y-2">
             <Link
-              href="/poly-betting"
+              href="/"
               className="flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
               onClick={() => setOpen(false)}
             >
