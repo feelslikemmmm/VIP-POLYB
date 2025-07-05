@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Share2 } from 'lucide-react';
 import HeaderCard from '@/components/log/header-card';
 import WalletConnect from '@/components/log/wallet-connect';
 
@@ -84,6 +85,26 @@ export default function LogPage() {
     setWalletState({ isConnected: true });
   };
 
+  const shareEvent = async (betTitle: string) => {
+    const shareData = {
+      title: `VIP PolyB ${betTitle} Betting NOW!`,
+      text: `Betting NOW!`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        // 공유 API를 지원하지 않는 경우 클립보드에 복사
+        await navigator.clipboard.writeText(window.location.href);
+        alert('링크가 클립보드에 복사되었습니다!');
+      }
+    } catch (error) {
+      console.error('공유 실패:', error);
+    }
+  };
+
   useEffect(() => {
     if (walletState.isConnected) {
       setBettingHistory(mockBettingHistory);
@@ -112,9 +133,19 @@ export default function LogPage() {
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-white text-base md:text-lg">
-                      {bet.title}
-                    </CardTitle>
+                    <div className="flex items-center gap-2">
+                      <CardTitle className="text-white text-base md:text-lg">
+                        {bet.title}
+                      </CardTitle>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => shareEvent(bet.title)}
+                        className="text-gray-400 hover:text-white hover:bg-gray-700 cursor-pointer"
+                      >
+                        <Share2 className="w-4 h-4" />
+                      </Button>
+                    </div>
                     {bet.status === 'WIN' && (
                       <div className="text-cyan-400 font-bold text-lg">
                         WIN!!
