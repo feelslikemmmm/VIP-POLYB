@@ -1,7 +1,7 @@
 'use client';
 
-import BettingDetailCard from './components/betting-detail-card';
-import BettingForm from './components/betting-form';
+import BettingDetailCard from '@/components/event/betting-detail-card';
+import BettingForm from '@/components/event/betting-form';
 import { use } from 'react';
 import { useBettingDetail } from '@/lib/hooks';
 
