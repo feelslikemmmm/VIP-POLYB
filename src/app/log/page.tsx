@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Share2 } from 'lucide-react';
-import HeaderCard from '@/components/log/header-card';
-import WalletConnect from '@/components/log/wallet-connect';
+import HeaderCard from '@/components/header-card';
+import WalletConnect from '@/components/wallet-connect';
 
 // Mock data - 실제로는 API에서 가져올 데이터
 const mockBettingHistory = [
@@ -114,9 +114,12 @@ export default function LogPage() {
   return (
     <div className="flex-1 relative overflow-y-auto">
       <div className="relative z-10 p-4 md:p-8 pt-20 md:pt-8 min-h-full">
-        <HeaderCard />
+        <HeaderCard title="Log" />
         {!walletState.isConnected ? (
-          <WalletConnect handleConnect={handleConnect} />
+          <WalletConnect
+            title="to check your betting history"
+            handleConnect={handleConnect}
+          />
         ) : (
           // Betting history
           <div className="space-y-4 md:space-y-6 max-w-4xl">
