@@ -27,8 +27,7 @@ export default function BettingDetailCard({
 
   const shareEvent = async () => {
     const shareData = {
-      title: `VIP PolyB ${title}`,
-      text: `Betting NOW!`,
+      title: `VIP PolyB ${title} Betting NOW!`,
       url: window.location.href,
     };
 
