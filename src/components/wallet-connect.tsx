@@ -1,15 +1,20 @@
+import React from 'react';
 import { Button } from '@/components/ui/button';
 
 interface WalletConnectProps {
+  title: string;
   handleConnect: () => void;
 }
 
-export default function WalletConnect({ handleConnect }: WalletConnectProps) {
+export default function WalletConnect({
+  title,
+  handleConnect,
+}: WalletConnectProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center space-y-6">
       <div className="space-y-4">
         <h2 className="text-2xl md:text-3xl font-bold text-blue-400">
-          To check your betting history
+          {title}
         </h2>
         <p className="text-lg text-gray-300">
           you need to log in with your KAIA Wallet.
