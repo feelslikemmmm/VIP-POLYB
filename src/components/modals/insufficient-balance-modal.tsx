@@ -1,5 +1,10 @@
 import React from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  VisuallyHidden,
+} from '@/components/ui/dialog';
 
 interface InsufficientBalanceModalProps {
   showInsufficientModal: boolean;
@@ -18,6 +23,10 @@ export default function InsufficientBalanceModal({
       onOpenChange={setShowInsufficientModal}
     >
       <DialogContent className="bg-gray-800 border-gray-700 text-white max-w-md">
+        {/**웹 접근성 정책으로 보이지 않는 텍스트 추가 */}
+        <VisuallyHidden>
+          <DialogTitle>잔액 부족 알림</DialogTitle>
+        </VisuallyHidden>
         <div className="py-6 text-center space-y-4">
           <div className="space-y-2">
             <p className="text-lg font-semibold">
