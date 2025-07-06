@@ -74,28 +74,16 @@ export default function BettingForm({
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="text-gray-300 text-sm">amount</label>
-              <div className="flex items-center gap-2 mt-1">
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <label className="text-gray-300 text-sm min-w-fit">Amount</label>
+              <div className="flex items-center gap-2 flex-1">
                 <Input
                   type="number"
                   value={betAmount}
                   onChange={(e) => onBetAmountChange(e.target.value)}
                   placeholder="0"
                   className="bg-gray-700 border-gray-600 text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
-                <span className="text-gray-300">VIP</span>
-              </div>
-            </div>
-            <div>
-              <label className="text-gray-300 text-sm">to win</label>
-              <div className="flex items-center gap-2 mt-1">
-                <Input
-                  type="text"
-                  value={potentialWin}
-                  readOnly
-                  className="bg-gray-700 border-gray-600 text-white"
                 />
                 <span className="text-gray-300">VIP</span>
               </div>
@@ -109,12 +97,18 @@ export default function BettingForm({
             </p>
           </div>
 
+          {betAmount && isBetAmountValid(betAmount) && (
+            <div className="flex items-center gap-3">
+              <label className="text-gray-300 text-sm min-w-fit">To Win</label>
+              <div className="flex items-center gap-2">
+                <span className="text-white">{potentialWin}</span>
+                <span className="text-gray-300">VIP</span>
+              </div>
+            </div>
+          )}
+
           <Button
-            className={`w-full py-3 text-lg cursor-pointer ${
-              isButtonDisabled
-                ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                : 'bg-cyan-500 hover:bg-cyan-600 text-white'
-            }`}
+            className="w-full py-3 text-lg cursor-pointer bg-red-500 text-white disabled:bg-red-500 disabled:text-white disabled:opacity-100"
             onClick={openTradeModal}
             disabled={isButtonDisabled}
           >
