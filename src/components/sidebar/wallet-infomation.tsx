@@ -8,11 +8,7 @@ import { Button } from '../ui/button';
 const mockWalletData = {
   address: '0x1234...5678',
   fullAddress: '0x1234567890abcdef1234567890abcdef12345678',
-  coins: [
-    { symbol: 'KAIA', amount: '1,234.56', value: '$2,469.12' },
-    { symbol: 'VIP', amount: '10,000', value: '$500.00' },
-    { symbol: 'USDT', amount: '500.00', value: '$500.00' },
-  ],
+  coins: [{ symbol: 'KAIA', amount: '1,234.56', value: '$2,469.12' }],
 };
 
 interface WalletInfomationProps {
@@ -33,8 +29,8 @@ export default function WalletInfomation({
       {/* Wallet Address */}
       <div className="bg-gray-700 rounded-lg p-3">
         <div className="text-xs text-gray-400 mb-1">Wallet Address</div>
-        <div className="text-white font-mono text-sm break-all">
-          {mockWalletData.address}
+        <div className="text-white font-mono text-sm break-all leading-relaxed">
+          {mockWalletData.fullAddress}
         </div>
       </div>
 
@@ -43,17 +39,14 @@ export default function WalletInfomation({
         <div className="text-xs text-gray-400 mb-2">Holdings</div>
         <div className="space-y-2">
           {mockWalletData.coins.map((coin) => (
-            <div
-              key={coin.symbol}
-              className="flex justify-between items-center"
-            >
-              <div>
+            <div key={coin.symbol}>
+              <div className="flex justify-between items-center">
                 <div className="text-white text-sm font-medium">
                   {coin.symbol}
                 </div>
-                <div className="text-gray-400 text-xs">{coin.amount}</div>
+                <div className="text-white text-sm">{coin.amount}</div>
               </div>
-              <div className="text-green-400 text-xs">{coin.value}</div>
+              <div className="text-green-400 text-xs mt-1">{coin.value}</div>
             </div>
           ))}
         </div>
