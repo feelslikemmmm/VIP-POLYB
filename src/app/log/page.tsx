@@ -165,11 +165,11 @@ export default function LogPage() {
                     <Button
                       className={`${
                         bet.selectedOption === 'YES'
-                          ? 'bg-blue-500'
+                          ? 'bg-blue-500 hover:bg-blue-500'
                           : bet.selectedOption === 'NO'
-                          ? 'bg-red-500'
-                          : 'bg-cyan-500'
-                      } text-white px-6 py-2 cursor-default`}
+                          ? 'bg-red-500 hover:bg-red-500'
+                          : 'bg-cyan-500 hover:bg-cyan-500'
+                      } text-white px-6 py-2 cursor-default hover:text-white`}
                     >
                       {bet.selectedOption}
                     </Button>
