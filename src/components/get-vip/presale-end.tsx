@@ -17,7 +17,7 @@ export default function PresaleEnd({ handleFreeGetVip }: PresaleEndProps) {
           <span className="text-white font-medium">FREE GET $VIP</span>
           <Button
             onClick={handleFreeGetVip}
-            className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2"
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2"
           >
             PLAY NOW
           </Button>
