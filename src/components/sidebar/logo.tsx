@@ -1,5 +1,10 @@
 import Image from 'next/image';
 
+/**
+ * 사이드바 로고 컴포넌트
+ * @returns JSX.Element
+ * @description 사이드바 상단에 표시되는 VIP PolyB 로고와 제목
+ */
 export default function Logo() {
   return (
     <div className="p-6 border-b border-gray-700 flex-shrink-0">

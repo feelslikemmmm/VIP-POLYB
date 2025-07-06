@@ -4,6 +4,12 @@ interface WalletConnectProps {
   handleWalletConnect: () => void;
 }
 
+/**
+ * 지갑 연결 버튼 컴포넌트
+ * @param handleWalletConnect - 지갑 연결 처리 함수
+ * @returns JSX.Element
+ * @description 사이드바에서 지갑 연결을 위한 버튼을 렌더링하는 컴포넌트
+ */
 export default function WalletConnect({
   handleWalletConnect,
 }: WalletConnectProps) {

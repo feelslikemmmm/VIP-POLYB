@@ -12,6 +12,14 @@ interface BettingDetailCardProps {
   onOptionSelect: (option: BettingOption) => void;
 }
 
+/**
+ * 베팅 상세 카드 컴포넌트
+ * @param event - 베팅 이벤트 정보
+ * @param selectedOptionId - 선택된 옵션 ID
+ * @param onOptionSelect - 옵션 선택 함수
+ * @returns JSX.Element
+ * @description 베팅 이벤트의 상세 정보와 옵션 선택 기능을 제공하는 카드 컴포넌트
+ */
 export default function BettingDetailCard({
   event,
   selectedOptionId,
@@ -21,10 +29,18 @@ export default function BettingDetailCard({
   const { title, options, bettingAmount, bettingEndDate, totalParticipants } =
     event;
 
+  /**
+   * 홈페이지로 이동하는 함수
+   * @description 뒤로가기 버튼 클릭 시 홈페이지로 라우팅
+   */
   const navigateToHome = () => {
     router.push('/');
   };
 
+  /**
+   * 이벤트 공유 함수
+   * @description 현재 베팅 이벤트를 소셜 미디어나 클립보드로 공유
+   */
   const shareEvent = async () => {
     const shareData = {
       title: `VIP PolyB ${title} Betting NOW!`,

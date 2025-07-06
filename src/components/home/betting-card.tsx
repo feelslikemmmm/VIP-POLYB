@@ -8,10 +8,20 @@ interface BettingCardProps {
   event: BettingList;
 }
 
+/**
+ * 베팅 카드 컴포넌트
+ * @param event - 베팅 이벤트 정보
+ * @returns JSX.Element
+ * @description 홈페이지에서 각 베팅 이벤트를 카드 형태로 표시하는 컴포넌트
+ */
 export default function BettingCard({ event }: BettingCardProps) {
   const { id, title, options } = event;
   const router = useRouter();
 
+  /**
+   * 베팅 이벤트 상세 페이지로 이동하는 함수
+   * @description 사용자가 베팅 옵션을 클릭했을 때 해당 이벤트의 상세 페이지로 라우팅
+   */
   const navigateToEventDetail = () => {
     router.push(`/event/${id}`);
   };

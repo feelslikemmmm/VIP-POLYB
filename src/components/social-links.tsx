@@ -1,5 +1,10 @@
 import { Globe, MessageCircle, Twitter } from 'lucide-react';
 
+/**
+ * 소셜 링크 컴포넌트
+ * @returns JSX.Element
+ * @description 텔레그램, 트위터, 웹사이트 등 소셜 미디어 링크를 표시하는 컴포넌트
+ */
 export default function SocialLinks() {
   return (
     <div className="flex justify-center gap-4 pt-3">

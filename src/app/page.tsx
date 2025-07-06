@@ -5,6 +5,11 @@ import HeaderCard from '@/components/home/header-card';
 import { useBettingList } from '@/lib/hooks';
 import { BettingList } from '@/types';
 
+/**
+ * 홈페이지 컴포넌트
+ * @returns JSX.Element
+ * @description 베팅 리스트를 표시하는 메인 홈페이지 컴포넌트
+ */
 export default function Home() {
   const { bettingList, isLoading, error } = useBettingList();
 

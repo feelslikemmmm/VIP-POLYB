@@ -1,5 +1,10 @@
 import { BettingList } from '@/types';
 
+/**
+ * 베팅 리스트 목 데이터
+ * @description 실제 서비스에서는 백엔드 API에서 가져올 데이터
+ * 현재는 개발 및 테스트 목적으로 하드코딩된 데이터 사용
+ */
 export const BETTING_LIST: BettingList[] = [
   {
     id: 1,
@@ -62,10 +67,11 @@ export const BETTING_LIST: BettingList[] = [
 
 /**
  * 배당률 계산 함수
- * 공식: (전체 배팅금액 * 0.92) / 해당 옵션의 배팅 금액
  * @param bettingList - 베팅 리스트 전체 정보
  * @param optionAmount - 특정 옵션의 배팅 금액
  * @returns 계산된 배당률 (소수점 둘째자리까지)
+ * @description 공식: (전체 배팅금액 * 0.92) / 해당 옵션의 배팅 금액
+ * 0.92는 플랫폼 수수료 8%를 제외한 비율
  */
 export const calculateOdds = (
   bettingList: BettingList,

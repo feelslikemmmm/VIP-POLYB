@@ -1,7 +1,10 @@
 import { LogOut } from 'lucide-react';
 import { Button } from '../ui/button';
 
-// Mock wallet data
+/**
+ * 목 지갑 데이터
+ * @description 실제 서비스에서는 지갑 API에서 가져올 데이터
+ */
 const mockWalletData = {
   address: '0x1234...5678',
   fullAddress: '0x1234567890abcdef1234567890abcdef12345678',
@@ -16,6 +19,12 @@ interface WalletInfomationProps {
   handleWalletDisconnect: () => void;
 }
 
+/**
+ * 지갑 정보 표시 컴포넌트
+ * @param handleWalletDisconnect - 지갑 연결 해제 처리 함수
+ * @returns JSX.Element
+ * @description 연결된 지갑의 주소, 보유 코인 정보, 연결 해제 버튼을 표시하는 컴포넌트
+ */
 export default function WalletInfomation({
   handleWalletDisconnect,
 }: WalletInfomationProps) {

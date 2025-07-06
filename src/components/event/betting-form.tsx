@@ -18,6 +18,15 @@ interface BettingFormProps {
   onBetAmountChange: (value: string) => void;
 }
 
+/**
+ * 베팅 폼 컴포넌트
+ * @param selectedOption - 선택된 베팅 옵션
+ * @param event - 베팅 이벤트 정보
+ * @param betAmount - 베팅 금액
+ * @param onBetAmountChange - 베팅 금액 변경 함수
+ * @returns JSX.Element
+ * @description 베팅 금액 입력과 거래 모달을 관리하는 폼 컴포넌트
+ */
 export default function BettingForm({
   selectedOption,
   event,
@@ -40,10 +49,18 @@ export default function BettingForm({
   const potentialWin = calculatePotentialWin(betAmount, currentOdds);
   const isButtonDisabled = !isBetAmountValid(betAmount);
 
+  /**
+   * 거래 모달을 여는 함수
+   * @description 베팅 버튼 클릭 시 거래 모달을 열어 거래 프로세스를 시작
+   */
   const openTradeModal = () => {
     setIsModalOpen(true);
   };
 
+  /**
+   * 거래 모달을 닫는 함수
+   * @description 거래 완료 또는 취소 시 모달을 닫음
+   */
   const closeTradeModal = () => {
     setIsModalOpen(false);
   };

@@ -19,13 +19,25 @@ interface TradeModalProps {
   betAmount: string;
 }
 
-// Mock wallet state - 실제로는 지갑 연결 상태를 관리하는 context나 store에서 가져올 데이터
+/**
+ * 목 지갑 상태 데이터
+ * @description 실제로는 지갑 연결 상태를 관리하는 context나 store에서 가져올 데이터
+ */
 const mockWalletState = {
   isConnected: false, // true로 변경하면 연결된 상태
   address: '0x0000000000',
   vipBalance: 0, // 1000000으로 변경하면 VIP 보유 상태
 };
 
+/**
+ * 거래 모달 컴포넌트
+ * @param isOpen - 모달 열림 상태
+ * @param onClose - 모달 닫기 함수
+ * @param selectedOption - 선택된 베팅 옵션
+ * @param betAmount - 베팅 금액
+ * @returns JSX.Element
+ * @description 베팅 거래를 처리하는 모달 컴포넌트, 지갑 연결 상태에 따라 다른 UI 표시
+ */
 export function TradeModal({
   isOpen,
   onClose,
@@ -34,6 +46,10 @@ export function TradeModal({
 }: TradeModalProps) {
   const [walletState, setWalletState] = useState(mockWalletState);
 
+  /**
+   * 지갑 연결 처리 함수
+   * @description 지갑 연결 로직을 처리하고 VIP 잔액을 설정
+   */
   const handleConnect = () => {
     // 지갑 연결 로직
     setWalletState({
@@ -43,12 +59,20 @@ export function TradeModal({
     });
   };
 
+  /**
+   * VIP 구매 페이지로 이동하는 함수
+   * @description Get $VIP 페이지로 이동하거나 VIP 구매 로직을 처리
+   */
   const handleGetVIP = () => {
     // Get $VIP 페이지로 이동하거나 VIP 구매 로직
     console.log('Get $VIP clicked');
     onClose();
   };
 
+  /**
+   * 실제 거래 처리 함수
+   * @description 베팅 거래를 실행하고 모달을 닫음
+   */
   const handleTrade = () => {
     // 실제 거래 로직
     console.log('Trade executed');
