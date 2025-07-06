@@ -106,8 +106,7 @@ Try betting on other issues now`;
     }
 
     const shareData = {
-      title: 'VIP PolyB',
-      text: shareText,
+      title: `${shareText}`,
       url: 'https://vipgame.2tm.fun/',
     };
 
@@ -116,8 +115,7 @@ Try betting on other issues now`;
         await navigator.share(shareData);
       } else {
         // 공유 API를 지원하지 않는 경우 클립보드에 복사
-        const fullShareText = `${shareText}\nhttps://vipgame.2tm.fun/`;
-        await navigator.clipboard.writeText(fullShareText);
+        await navigator.clipboard.writeText(window.location.href);
         alert('공유 내용이 클립보드에 복사되었습니다!');
       }
     } catch (error) {
