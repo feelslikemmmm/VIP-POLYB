@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { BettingList, BettingOption } from '@/types';
 import { fetchBettingList } from '@/api';
 import { BETTING_LIST } from '@/lib/betting-data';
@@ -45,6 +46,7 @@ export const useBettingList = () => {
  * @description 특정 베팅 이벤트의 상세 정보와 사용자 선택 상태를 관리
  */
 export const useBettingDetail = (eventId: number) => {
+  const searchParams = useSearchParams();
   const [selectedOptionId, setSelectedOptionId] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<BettingOption | null>(
     null
@@ -55,11 +57,26 @@ export const useBettingDetail = (eventId: number) => {
 
   useEffect(() => {
     if (bettingEvent && bettingEvent.options.length > 0) {
+      const preselectedOptionId = searchParams.get('selectedOption');
+
+      if (preselectedOptionId) {
+        const selectedOptionFromQuery = bettingEvent.options.find(
+          (option) => option.id === parseInt(preselectedOptionId)
+        );
+
+        if (selectedOptionFromQuery) {
+          setSelectedOption(selectedOptionFromQuery);
+          setSelectedOptionId(selectedOptionFromQuery.id);
+          return;
+        }
+      }
+
+      // 쿼리 파라미터에서 옵션을 찾지 못한 경우 첫 번째 옵션을 기본으로 설정
       const firstOption = bettingEvent.options[0];
       setSelectedOption(firstOption);
       setSelectedOptionId(firstOption.id);
     }
-  }, [bettingEvent]);
+  }, [bettingEvent, searchParams]);
 
   /**
    * 베팅 옵션을 선택하는 함수

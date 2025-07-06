@@ -20,10 +20,11 @@ export default function BettingCard({ event }: BettingCardProps) {
 
   /**
    * 베팅 이벤트 상세 페이지로 이동하는 함수
-   * @description 사용자가 베팅 옵션을 클릭했을 때 해당 이벤트의 상세 페이지로 라우팅
+   * @param optionId - 선택한 베팅 옵션 ID
+   * @description 사용자가 베팅 옵션을 클릭했을 때 해당 이벤트의 상세 페이지로 라우팅하며, 선택한 옵션을 쿼리 파라미터로 전달
    */
-  const navigateToEventDetail = () => {
-    router.push(`/event/${id}`);
+  const navigateToEventDetail = (optionId: number) => {
+    router.push(`/event/${id}?selectedOption=${optionId}`);
   };
 
   return (
@@ -38,7 +39,7 @@ export default function BettingCard({ event }: BettingCardProps) {
           {options.map((option, index) => (
             <Button
               key={option.id}
-              onClick={navigateToEventDetail}
+              onClick={() => navigateToEventDetail(option.id)}
               className={`flex-1 text-white py-3 cursor-pointer ${getButtonStyleByIndex(
                 index
               )}`}
