@@ -96,9 +96,6 @@ export default function GetVipPage() {
         ) : !presaleData ? (
           <>
             <LoadingModal isOpen={true} />
-            <div className="text-center text-white opacity-0">
-              데이터 로딩 중...
-            </div>
           </>
         ) : !presaleData.isActive ? (
           <PresaleEnd handleFreeGetVip={handleFreeGetVip} />
