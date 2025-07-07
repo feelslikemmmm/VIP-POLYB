@@ -20,7 +20,7 @@ export default function LoadingModal({ isOpen }: LoadingModalProps) {
         alt="로딩 중..."
         width={300}
         height={300}
-        className="w-50 h-50 md:w-72 md:h-72"
+        className="w-50 h-auto md:w-72 md:h-auto"
         unoptimized
       />
     </div>
