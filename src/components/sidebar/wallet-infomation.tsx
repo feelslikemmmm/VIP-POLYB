@@ -8,7 +8,11 @@ import { Button } from '../ui/button';
 const mockWalletData = {
   address: '0x1234...5678',
   fullAddress: '0x1234567890abcdef1234567890abcdef12345678',
-  coins: [{ symbol: 'KAIA', amount: '1,234.56', value: '$2,469.12' }],
+  coins: [
+    { symbol: 'KAIA', amount: '1,234.56', value: '$2,469.12' },
+    { symbol: 'VIP', amount: '1,500,000' },
+    { symbol: 'USDT', amount: '2,340.50' },
+  ],
 };
 
 interface WalletInfomationProps {
@@ -46,7 +50,9 @@ export default function WalletInfomation({
                 </div>
                 <div className="text-white text-sm">{coin.amount}</div>
               </div>
-              <div className="text-green-400 text-xs mt-1">{coin.value}</div>
+              {coin.value && (
+                <div className="text-green-400 text-xs mt-1">{coin.value}</div>
+              )}
             </div>
           ))}
         </div>
