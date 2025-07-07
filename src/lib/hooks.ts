@@ -23,13 +23,17 @@ export const useBettingList = () => {
     const loadBettingList = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchBettingList();
-        setBettingList(data);
+        setTimeout(async () => {
+          const data = await fetchBettingList();
+          setBettingList(data);
+        }, 5000);
       } catch (err) {
         console.error('베팅 리스트 로드 실패:', err);
         setError('베팅 리스트를 불러오는데 실패했습니다.');
       } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
       }
     };
 

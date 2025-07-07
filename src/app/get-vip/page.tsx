@@ -6,6 +6,7 @@ import WalletConnect from '@/components/wallet-connect';
 import PresaleEnd from '@/components/get-vip/presale-end';
 import PresaleActive from '@/components/get-vip/presale-active';
 import InsufficientBalanceModal from '@/components/modals/insufficient-balance-modal';
+import LoadingModal from '@/components/modals/loading-modal';
 
 // Mock presale data
 const mockPresaleData = {
@@ -93,7 +94,12 @@ export default function GetVipPage() {
         {!walletState.isConnected ? (
           <WalletConnect title="To get $VIP" handleConnect={handleConnect} />
         ) : !presaleData ? (
-          <div className="text-center text-white">데이터 로딩 중...</div>
+          <>
+            <LoadingModal isOpen={true} />
+            <div className="text-center text-white opacity-0">
+              데이터 로딩 중...
+            </div>
+          </>
         ) : !presaleData.isActive ? (
           <PresaleEnd handleFreeGetVip={handleFreeGetVip} />
         ) : (
