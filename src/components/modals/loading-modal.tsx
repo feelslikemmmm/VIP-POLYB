@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../../public/Loadinteractive.json';
 
 interface LoadingModalProps {
   isOpen: boolean;
@@ -14,14 +15,15 @@ export default function LoadingModal({ isOpen }: LoadingModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-y-0 left-0 md:left-64 right-0 z-50 flex items-center justify-center">
-      <Image
-        src="/loading.gif"
-        alt="로딩 중..."
-        width={300}
-        height={300}
+    <div className="fixed inset-y-0 left-0 md:left-64 right-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+      <Lottie
+        animationData={loadingAnimation}
+        loop={true}
         className="w-50 h-auto md:w-72 md:h-auto"
-        unoptimized
+        style={{
+          backgroundColor: 'transparent',
+          mixBlendMode: 'screen',
+        }}
       />
     </div>
   );
