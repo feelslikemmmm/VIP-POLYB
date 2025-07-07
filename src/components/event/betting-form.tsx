@@ -108,7 +108,7 @@ export default function BettingForm({
           )}
 
           <Button
-            className="w-full py-3 text-lg cursor-pointer bg-red-500 text-white disabled:bg-red-500 disabled:text-white disabled:opacity-100"
+            className="w-full py-3 text-lg !cursor-pointer bg-red-500 text-white hover:bg-red-500 disabled:bg-red-500 disabled:text-white disabled:opacity-100"
             onClick={openTradeModal}
             disabled={isButtonDisabled}
           >

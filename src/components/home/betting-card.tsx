@@ -19,16 +19,32 @@ export default function BettingCard({ event }: BettingCardProps) {
   const router = useRouter();
 
   /**
-   * 베팅 이벤트 상세 페이지로 이동하는 함수
+   * 베팅 이벤트 상세 페이지로 이동하는 함수 (옵션 선택 없이)
+   * @description 카드 영역을 클릭했을 때 옵션 선택 없이 상세 페이지로 이동
+   */
+  const navigateToEventDetailWithoutOption = () => {
+    router.push(`/event/${id}`);
+  };
+
+  /**
+   * 베팅 이벤트 상세 페이지로 이동하는 함수 (옵션 선택과 함께)
    * @param optionId - 선택한 베팅 옵션 ID
+   * @param event - 클릭 이벤트 객체
    * @description 사용자가 베팅 옵션을 클릭했을 때 해당 이벤트의 상세 페이지로 라우팅하며, 선택한 옵션을 쿼리 파라미터로 전달
    */
-  const navigateToEventDetail = (optionId: number) => {
+  const navigateToEventDetailWithOption = (
+    optionId: number,
+    event: React.MouseEvent
+  ) => {
+    event.stopPropagation(); // 카드 클릭 이벤트 방지
     router.push(`/event/${id}?selectedOption=${optionId}`);
   };
 
   return (
-    <Card className="bg-gray-800/80 border-gray-700 backdrop-blur-sm">
+    <Card
+      className="bg-gray-800/80 border-gray-700 backdrop-blur-sm cursor-pointer hover:bg-gray-800/90 transition-colors"
+      onClick={navigateToEventDetailWithoutOption}
+    >
       <CardHeader className="pb-3 md:pb-6">
         <CardTitle className="text-white text-base md:text-lg">
           {title}
@@ -39,7 +55,9 @@ export default function BettingCard({ event }: BettingCardProps) {
           {options.map((option, index) => (
             <Button
               key={option.id}
-              onClick={() => navigateToEventDetail(option.id)}
+              onClick={(event) =>
+                navigateToEventDetailWithOption(option.id, event)
+              }
               className={`flex-1 text-white py-3 cursor-pointer ${getButtonStyleByIndex(
                 index
               )}`}

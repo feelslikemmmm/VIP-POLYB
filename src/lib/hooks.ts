@@ -71,10 +71,9 @@ export const useBettingDetail = (eventId: number) => {
         }
       }
 
-      // 쿼리 파라미터에서 옵션을 찾지 못한 경우 첫 번째 옵션을 기본으로 설정
-      const firstOption = bettingEvent.options[0];
-      setSelectedOption(firstOption);
-      setSelectedOptionId(firstOption.id);
+      // 쿼리 파라미터가 없을 때는 아무 옵션도 선택하지 않음
+      setSelectedOption(null);
+      setSelectedOptionId(0);
     }
   }, [bettingEvent, searchParams]);
 
