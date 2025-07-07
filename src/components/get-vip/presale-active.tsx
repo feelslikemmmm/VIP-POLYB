@@ -64,7 +64,8 @@ export default function PresaleActive({
               type="text"
               value={vipAmount ? vipAmount.toLocaleString() : ''}
               onChange={(e) => {
-                const numericValue = e.target.value.replace(/,/g, '');
+                // 숫자만 허용하는 정규식
+                const numericValue = e.target.value.replace(/[^0-9]/g, '');
                 const value = Math.min(Number(numericValue), maxVipAvailable);
                 setVipAmount(Math.max(0, value));
               }}

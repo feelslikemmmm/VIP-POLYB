@@ -65,6 +65,25 @@ export default function BettingForm({
     setIsModalOpen(false);
   };
 
+  /**
+   * 숫자만 입력되도록 하는 함수
+   * @param value - 입력된 값
+   * @description 숫자와 소수점만 허용하고 나머지 문자는 제거
+   */
+  const handleAmountChange = (value: string) => {
+    // 숫자와 소수점만 허용하는 정규식
+    const numericValue = value.replace(/[^0-9.]/g, '');
+
+    // 소수점이 여러 개 있으면 첫 번째 소수점만 유지
+    const parts = numericValue.split('.');
+    const filteredValue =
+      parts.length > 2
+        ? parts[0] + '.' + parts.slice(1).join('')
+        : numericValue;
+
+    onBetAmountChange(filteredValue);
+  };
+
   return (
     <>
       <Card className="bg-gray-800/80 border-gray-700 backdrop-blur-sm">
@@ -79,9 +98,9 @@ export default function BettingForm({
               <label className="text-gray-300 text-sm min-w-fit">Amount</label>
               <div className="flex items-center gap-2 flex-1">
                 <Input
-                  type="number"
+                  type="text"
                   value={betAmount}
-                  onChange={(e) => onBetAmountChange(e.target.value)}
+                  onChange={(e) => handleAmountChange(e.target.value)}
                   placeholder="0"
                   className="bg-gray-700 border-gray-600 text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
