@@ -28,7 +28,10 @@ const mockWalletState = {
 };
 
 export default function GetVipPage() {
+  // 지갑 연결 상태 관리
   const [walletState, setWalletState] = useState(mockWalletState);
+
+  // 프리세일 데이터 상태 관리
   const [presaleData, setPresaleData] = useState<{
     totalRounds: number;
     currentRound: number;
@@ -39,26 +42,36 @@ export default function GetVipPage() {
     isActive: boolean;
     freeGetVipUrl: string;
   }>();
+
+  // 잔액 부족 모달 상태 관리
   const [showInsufficientModal, setShowInsufficientModal] = useState(false);
   const [insufficientType, setInsufficientType] = useState<'USDT' | 'KAIA'>(
     'USDT'
   );
+
+  // VIP 구매 수량 상태 관리
   const [vipAmount, setVipAmount] = useState(0);
 
+  // 지갑 연결 처리 함수
   const handleConnect = () => {
     setWalletState({ ...walletState, isConnected: true });
   };
 
+  // VIP 거래 처리 함수 (USDT 또는 KAIA로 구매)
   const handleTrade = (type: 'USDT' | 'KAIA') => {
     if (!presaleData) return;
 
+    // 필요한 코인 수량 계산
     const requiredAmount =
       type === 'USDT'
         ? Math.ceil(vipAmount / presaleData.vipPerUsdt)
         : Math.ceil(vipAmount / presaleData.vipPerKaia);
+
+    // 사용자 잔액 확인
     const userBalance =
       type === 'USDT' ? walletState.usdtBalance : walletState.kaiaBalance;
 
+    // 잔액 부족 시 모달 표시, 충분하면 거래 완료
     if (userBalance < requiredAmount) {
       setInsufficientType(type);
       setShowInsufficientModal(true);
@@ -68,19 +81,24 @@ export default function GetVipPage() {
     }
   };
 
+  // 무료 VIP 획득 처리 함수 (외부 링크로 이동)
   const handleFreeGetVip = () => {
     if (!presaleData) return;
     window.open(presaleData.freeGetVipUrl, '_blank');
   };
 
+  // 프리세일 진행률 계산
   const progressPercentage = presaleData
     ? (presaleData.roundRaised / presaleData.roundTarget) * 100
     : 0;
+
+  // 남은 VIP 수량 계산
   const remainingAmount = presaleData
     ? presaleData.roundTarget - presaleData.roundRaised
     : 0;
   const maxVipAvailable = remainingAmount;
 
+  // 지갑 연결 시 프리세일 데이터 로드
   useEffect(() => {
     if (walletState.isConnected) {
       setPresaleData(mockPresaleData);
