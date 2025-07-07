@@ -24,9 +24,12 @@ export default function Home() {
     );
   }
 
+  if (isLoading) {
+    return <LoadingModal isOpen={isLoading} />;
+  }
+
   return (
     <>
-      <LoadingModal isOpen={isLoading} />
       <div className="flex-1 relative overflow-y-auto">
         <div className="relative z-10 p-4 md:p-8 pt-20 md:pt-8 min-h-full">
           <HeaderCard />
